@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 class TopStoriesServices {
-    func getTopStoriesFor(_ section: String) -> Observable<[Articcle]> {
+    func getTopStoriesFor(_ section: String) -> Observable<[Article]> {
         return ApiManager.shared
             .rx
             .request(Api.topStories(section))
@@ -20,7 +20,7 @@ class TopStoriesServices {
                 guard let jsonList = json["results"] as? [Json] else {
                     return []
                 }
-                return jsonList.map({ Articcle($0) })
+                return jsonList.map({ Article($0) })
             })
             .observeOn(MainScheduler.instance)
     }

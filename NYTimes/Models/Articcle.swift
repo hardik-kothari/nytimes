@@ -16,7 +16,7 @@ enum ImageFormat: String {
     case superJumbo = "superJumbo"
 }
 
-struct Articcle {
+struct Article {
     enum Keys: String, CodingKey {
         case title
         case abstract
@@ -33,7 +33,7 @@ struct Articcle {
     let abstract: String?
     let url: String?
     let byline: String?
-    let published_date: String?
+    let published_date: Date?
     var thumbUrl: String?
     var largeUrl: String?
     
@@ -42,7 +42,7 @@ struct Articcle {
         abstract = json[Keys.abstract]
         url = json[Keys.url]
         byline = json[Keys.byline]
-        published_date = json[Keys.published_date]
+        published_date = (json[Keys.published_date] ?? "").toUTCDate(format: "yyyy-MM-dd'T'HH:mm:ss+HH:mm")
         let mediaList: [Json] = json[Keys.multimedia] ?? []
         for media in mediaList {
             guard let format = ImageFormat(rawValue: media[Keys.format] ?? "") else {

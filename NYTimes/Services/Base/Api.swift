@@ -21,7 +21,8 @@ protocol Target {
 
 extension Target {
     var url: URL {
-        return URL(string: baseUrl)!.appendingPathComponent(path).appendingPathComponent("?api-key=EOjvxUrKIzoAOVG7ovVA41CY3UGGC9UG")
+        let urlString = baseUrl + path + "?api-key=EOjvxUrKIzoAOVG7ovVA41CY3UGGC9UG"
+        return URL(string: urlString)!
     }
 }
 
@@ -56,7 +57,7 @@ extension Api: Target {
     }
     
     var parameterEncoding: ParameterEncoding {
-        return JSONEncoding.default
+        return URLEncoding.default
     }
     
     var headers: [String: String]? {

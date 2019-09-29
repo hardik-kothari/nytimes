@@ -6,4 +6,5 @@ target 'NYTimes' do
   use_frameworks!
   pod 'Alamofire'
   pod 'RxSwift'
+  pod 'Kingfisher'
 end

@@ -1,20 +1,26 @@
 PODS:
   - Alamofire (4.9.0)
+  - Kingfisher (5.8.1):
+    - Kingfisher/Core (= 5.8.1)
+  - Kingfisher/Core (5.8.1)
   - RxSwift (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Kingfisher
   - RxSwift
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Kingfisher
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: 86c02335f0413c7e65984f17ff4e907ba765eb16
+PODFILE CHECKSUM: 816d6bd53aa7cd9bee113b09a6bdd0b292dd84b3
 
 COCOAPODS: 1.8.1
