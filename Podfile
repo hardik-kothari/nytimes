@@ -7,4 +7,9 @@ target 'NYTimes' do
   pod 'Alamofire'
   pod 'RxSwift'
   pod 'Kingfisher'
+  
+  target 'NYTimesTests' do
+    inherit! :search_paths
+    pod 'RxNimble'
+  end
 end

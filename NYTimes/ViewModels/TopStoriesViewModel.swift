@@ -32,17 +32,26 @@ extension TopStoriesViewModel {
             service.getTopStoriesFor(section)
                 .observeOn(MainScheduler.instance)
                 .subscribe (
-                    onNext: { [weak self] articles in
-                        self?.articleList = articles.map({ article in
-                            return ArticleDetailViewModel(article.title,
-                                                          author: article.byline,
-                                                          abstract: article.abstract,
-                                                          thumbnail: article.thumbImage,
-                                                          largeImage: article.largeImage,
-                                                          publishedDate: article.published_date,
-                                                          articleLink: article.url)
-                        })
-                        self?.topStoriesSubject.onNext(.response(nil))
+                    onNext: { [weak self] state in
+                        switch state {
+                        case .response(let response):
+                            guard let articles = response as? [Article] else {
+                                self?.topStoriesSubject.onNext(.error)
+                                return
+                            }
+                            self?.articleList = articles.map({ article in
+                                return ArticleDetailViewModel(article.title,
+                                                              author: article.byline,
+                                                              abstract: article.abstract,
+                                                              thumbnail: article.thumbImage,
+                                                              largeImage: article.largeImage,
+                                                              publishedDate: article.published_date,
+                                                              articleLink: article.url)
+                            })
+                            self?.topStoriesSubject.onNext(.response(nil))
+                        default:
+                            self?.topStoriesSubject.onNext(.error)
+                        }
                     },
                     onError: { [weak self] error in
                         self?.topStoriesSubject.onNext((.error))
