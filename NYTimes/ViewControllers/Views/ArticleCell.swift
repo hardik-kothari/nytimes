@@ -89,7 +89,7 @@ class ArticleCell: UITableViewCell {
     func configure(_ viewModel: ArticleDetailViewModel) {
         titleLabel.text = viewModel.title
         authorLabel.text = viewModel.author
-        guard let imageURL = viewModel.thumbImageUrl else {
+        guard let urlString = viewModel.thumbImage?.url, let imageURL = URL(string: urlString) else {
             return
         }
         articleImage.kf.indicatorType = .activity

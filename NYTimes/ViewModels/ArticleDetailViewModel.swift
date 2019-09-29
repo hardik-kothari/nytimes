@@ -12,16 +12,18 @@ class ArticleDetailViewModel: NSObject {
     let title: String?
     let author: String?
     let abstract: String?
-    let thumbImageUrl: URL?
-    let largeImageUrl: URL?
+    let thumbImage: ArticleImage?
+    let largeImage: ArticleImage?
     let publishedOn: String?
-    
-    init(_ title: String?, author: String?, abstract: String?, thumbnail: String?, largeUrl: String?, publishedDate: Date?) {
+    let articleLink: String?
+
+    init(_ title: String?, author: String?, abstract: String?, thumbnail: ArticleImage?, largeImage: ArticleImage?, publishedDate: Date?, articleLink: String?) {
         self.title = title
         self.author = author
         self.abstract = abstract
-        self.thumbImageUrl = URL(string: thumbnail ?? "")
-        self.largeImageUrl = URL(string: largeUrl ?? "")
-        self.publishedOn = publishedDate?.toLocalString(format: "dd MMM yyyy, HH:mm")
+        self.thumbImage = thumbnail
+        self.largeImage = largeImage
+        self.publishedOn = publishedDate?.toLocalString(format: "MMM. dd, yyyy HH:mm")
+        self.articleLink = articleLink
     }
 }

@@ -58,6 +58,7 @@ extension UIView {
         view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         view.translatesAutoresizingMaskIntoConstraints = false
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        indicator.tintColor = .systemTeal
         indicator.hidesWhenStopped = true
         indicator.startAnimating()
         view.addSubview(indicator)
@@ -86,6 +87,8 @@ extension UIView {
         retryButton.setTitle("Try again", for: UIControl.State.normal)
         retryButton.titleLabel?.font =  UIFont.systemFont(ofSize: 16.0, weight: .bold)
         retryButton.layer.cornerRadius = 24.0
+        retryButton.setTitleColor(.systemBackground, for: .normal)
+        retryButton.backgroundColor = .systemTeal
         retryButton.addAction(for: .touchUpInside) { (button) in
             tryAgain()
         }

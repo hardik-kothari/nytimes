@@ -127,7 +127,8 @@ extension HomeViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let articleViewModel = viewModel.articleViewModel(at: indexPath)
+        show(ArticleDetailViewController(articleViewModel), sender: nil)
     }
 }
 

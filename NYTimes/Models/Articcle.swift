@@ -25,8 +25,6 @@ struct Article {
         case published_date
         case multimedia
         case format
-        case thumbUrl
-        case largeUrl
     }
     
     let title: String?
@@ -34,15 +32,16 @@ struct Article {
     let url: String?
     let byline: String?
     let published_date: Date?
-    var thumbUrl: String?
-    var largeUrl: String?
+    var thumbImage: ArticleImage?
+    var largeImage: ArticleImage?
     
     init(_ json: Json) {
         title = json[Keys.title]
         abstract = json[Keys.abstract]
         url = json[Keys.url]
         byline = json[Keys.byline]
-        published_date = (json[Keys.published_date] ?? "").toUTCDate(format: "yyyy-MM-dd'T'HH:mm:ss+HH:mm")
+        let dateString = json[Keys.published_date] ?? ""
+        published_date = dateString.toUTCDate(format: "yyyy-MM-dd'T'HH:mm:ssZ")
         let mediaList: [Json] = json[Keys.multimedia] ?? []
         for media in mediaList {
             guard let format = ImageFormat(rawValue: media[Keys.format] ?? "") else {
@@ -50,9 +49,9 @@ struct Article {
             }
             switch format {
             case .thumbnail:
-                thumbUrl = media[Keys.url]
+                thumbImage = ArticleImage(media)
             case .superJumbo:
-                largeUrl = media[Keys.url]
+                largeImage = ArticleImage(media)
             default:
                 break
             }

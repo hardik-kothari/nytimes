@@ -37,9 +37,10 @@ extension TopStoriesViewModel {
                             return ArticleDetailViewModel(article.title,
                                                           author: article.byline,
                                                           abstract: article.abstract,
-                                                          thumbnail: article.thumbUrl,
-                                                          largeUrl: article.largeUrl,
-                                                          publishedDate: article.published_date)
+                                                          thumbnail: article.thumbImage,
+                                                          largeImage: article.largeImage,
+                                                          publishedDate: article.published_date,
+                                                          articleLink: article.url)
                         })
                         self?.topStoriesSubject.onNext(.response(nil))
                     },
